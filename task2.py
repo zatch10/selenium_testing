@@ -7,13 +7,13 @@ from selenium.common.exceptions import NoSuchElementException
 import time
 
 #edit username password here before running the bot
-username = ""
-password = ""
+username = "zatchssj2"
+password = "somepassword"
 
 #initializing wait and driver
 driver = webdriver.Firefox()
 driver.maximize_window()
-wait = WebDriverWait(driver,15)
+wait = WebDriverWait(driver,5)
 
 def check_100(item):
     try:
@@ -57,13 +57,13 @@ while True:
     if check == True:
         break
     popup.send_keys(Keys.END)
-    time.sleep(1)
 
 #after checking for 100th user, click on the user link
 user_100 = driver.find_element_by_xpath("/html/body/div[3]/div/div[2]/ul/div/li[100]/div/div[1]/div[2]/div[1]/a").click()
 
-page_wait = wait.until(EC.element_to_be_clickable((By.XPATH,'/html/body/span/section/main/div/header/section/div[1]/div[1]/span/span[1]/button')))
-
-#click on follow (the xpath is same for any instagram header)
-driver.find_element_by_xpath("/html/body/span/section/main/div/header/section/div[1]/div[1]/span/span[1]/button").click()
-
+#there can 2 xpaths depeneding on the type of instagram page so we try for both
+try:
+    page_wait = wait.until(EC.element_to_be_clickable((By.XPATH,'/html/body/span/section/main/div/header/section/div[1]/div[1]/span/span[1]/button')))
+    driver.find_element_by_xpath("/html/body/span/section/main/div/header/section/div[1]/div[1]/span/span[1]/button").click()
+except:
+    driver.find_element_by_xpath("/html/body/span/section/main/div/header/section/div[1]/button").click()
