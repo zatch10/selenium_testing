@@ -33,9 +33,7 @@ for i in range(20):
     count += 1
     if count == 10: break
 
-print(total_arr)
-print(count)
-with open("out.csv", "w", newline="") as f:
+with open("contact_info.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(total_arr)
 
